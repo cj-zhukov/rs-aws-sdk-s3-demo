@@ -52,13 +52,17 @@ pub async fn list_keys_to_map(
     Ok(files)
 }
 
-/// List keys using stream
+/// List keys using a stream.
+///
 /// # Examples
-/// ```
-/// // let mut stream = Box::pin(list_keys_stream(&client, "bucket", "prefix").await.take(5));
-/// // while let Some(res) = stream.next().await.transpose()? {
-/// //    println!("{}", res);
-/// // }
+///
+/// Stream the first five keys under a prefix:
+///
+/// ```ignore
+/// let mut stream = Box::pin(list_keys_stream(&client, "bucket", "prefix").await.take(5));
+/// while let Some(res) = stream.next().await.transpose()? {
+///     println!("{res}");
+/// }
 /// ```
 pub async fn list_keys_stream<'a>(
     client: &'a Client,
